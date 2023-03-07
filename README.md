@@ -40,7 +40,7 @@
 
 ### V1
 
-- /lists/ (GET, POST
+- /lists/ (GET, POST)
 
 - /lists/<list-id>/ (GET, PUT, PATCH, DELETE)
 
