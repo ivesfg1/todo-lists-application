@@ -40,28 +40,20 @@
 
 ### V1
 
-- /lists/
-- GET, POST
+- /lists/ (GET, POST
 
-- /lists/<list-id>/
-- GET, PUT, PATCH, DELETE
+- /lists/<list-id>/ (GET, PUT, PATCH, DELETE)
 
-- /tasks/
-- GET, POST
+- /tasks/ (GET, POST)
 
-- /tasks/<task-id>/
-- GET, PUT, PATCH, DELETE
+- /tasks/<task-id>/ (GET, PUT, PATCH, DELETE)
 
 ### V2
 
-- /lists/
-- GET, POST
+- /lists/ (GET, POST)
 
-- /lists/<list-id>/
-- GET, PUT, PATCH, DELETE
+- /lists/<list-id>/ (GET, PUT, PATCH, DELETE)
 
-- /lists/<list-id>/tasks/
-- GET, POST
+- /lists/<list-id>/tasks/ (GET, POST)
 
-- /lists/<todo-list-id>/tasks/<task-id>/
-- GET, PUT, PATCH, DELETE
+- /lists/<todo-list-id>/tasks/<task-id>/ (GET, PUT, PATCH, DELETE)
