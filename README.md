@@ -40,28 +40,28 @@
 
 ### V1
 
-endpoint: /lists/
-metodos: GET, POST
+#### /lists/
+#### GET, POST
 
-endpoint: /lists/<list-id>/
-metodos: GET, PUT, PATCH, DELETE
+#### /lists/<list-id>/
+#### GET, PUT, PATCH, DELETE
 
-endpoint: /tasks/
-metodos: GET, POST
+#### /tasks/
+#### GET, POST
 
-endpoint: /tasks/<task-id>/
-metodos: GET, PUT, PATCH, DELETE
+#### /tasks/<task-id>/
+#### GET, PUT, PATCH, DELETE
 
 ### V2
 
-endpoint: /lists/
-metodos: GET, POST
+#### /lists/
+#### GET, POST
 
-endpoint: /lists/<list-id>/
-metodos: GET, PUT, PATCH, DELETE
+#### /lists/<list-id>/
+#### GET, PUT, PATCH, DELETE
 
-endpoint: /lists/<list-id>/tasks/
-metodos: GET, POST
+#### /lists/<list-id>/tasks/
+#### GET, POST
 
-endpoint: /lists/<todo-list-id>/tasks/<task-id>/
-metodos: GET, PUT, PATCH, DELETE
+#### /lists/<todo-list-id>/tasks/<task-id>/
+#### GET, PUT, PATCH, DELETE
