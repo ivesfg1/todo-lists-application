@@ -1,0 +1,5 @@
+wheel
+setuptools
+black
+django<4
+djangorestframework
