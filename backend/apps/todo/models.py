@@ -17,7 +17,7 @@ class TodoListQueryset(models.QuerySet):
     def complete(self):
         """
         Retorna somente as listas de tarefas concluidas. Listas "concluidas", são aquelas em que todos os
-        objetos de TodoTask atrelados à mesma possuem o atributo "complete" com valor booleano True.
+        objetos de TodoTask atrelados à mesma possuem o atributo "complete" com valor booleano igual a True.
 
         ___
         Passo a passo utilizado para resolver o problema:
@@ -95,7 +95,7 @@ class TodoTaskQueryset(models.QuerySet):
     def complete(self):
         """
         Retorna somente as tarefas concluidas. Tarefas "concluidas", são aquelas que possuem
-        o atributo "complete" com valor booleano True.
+        o atributo "complete" com valor booleano igual a True.
         """
         return self.filter(complete=True)
 
