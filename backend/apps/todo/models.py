@@ -33,23 +33,15 @@ class TodoListQueryset(models.QuerySet):
             Passo 4 => Retornar o queryset resultante do filtro realizado no passo 3.
 
         ___
-        PS: Abaixo, onde tiver F("task") é pq to usando o valor do related_query_name
+        PS: Abaixo, onde tiver "task" (nos models.Count()) é pq to usando o valor do related_query_name
         """
-
-        # complete_queryset = self.alias(
-        #     number_of_tasks=models.Count(models.F("task")),  # Passo 1
-        #     number_of_complete_tasks=(
-        #         models.Count(models.F("task"), filter=models.Q(task__complete=True))
-        #     ),  # Passo 2 (Ler "OBS 1")
-        # )
 
         complete_queryset = self.alias(
             number_of_tasks=models.Count("task"),  # Passo 1
             number_of_complete_tasks=(
                 models.Count("task", filter=models.Q(task__complete=True))
             ),  # Passo 2 (Ler "OBS 1")
-        )  # realmente o ChatGPT estava certo, nao precisa usar o models.F() dentro dos Count
-        # o Count ja foi feito pra buscar campos do proprio queryset, fica redundante botar F()
+        )
 
         complete_queryset = complete_queryset.filter(
             number_of_tasks=models.F("number_of_complete_tasks")  # Passo 3
