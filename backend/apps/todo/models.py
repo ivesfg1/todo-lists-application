@@ -37,14 +37,14 @@ class TodoListQueryset(models.QuerySet):
         """
 
         complete_queryset = self.alias(
-            number_of_tasks=models.Count("task"),  # Passo 1
+            number_of_total_tasks=models.Count("task"),  # Passo 1
             number_of_complete_tasks=(
                 models.Count("task", filter=models.Q(task__complete=True))
             ),  # Passo 2 (Ler "OBS 1")
         )
 
         complete_queryset = complete_queryset.filter(
-            number_of_tasks=models.F("number_of_complete_tasks")  # Passo 3
+            number_of_total_tasks=models.F("number_of_complete_tasks")  # Passo 3
         )
 
         return complete_queryset  # Passo 4
@@ -86,6 +86,13 @@ class TodoList(BaseModel):
 
     def get_tasks(self):
         return self.tasks.all()
+
+    def is_complete(self):
+        # TODO: criar docstring explicando esse metodo, to entendendo agora mas no futuro posso esquecer
+        number_of_total_tasks = self.get_tasks().count()
+        number_of_complete_tasks = self.get_tasks().complete().count()
+        return number_of_total_tasks == number_of_complete_tasks
+        # OBS: number_of_complete_tasks chama metodo complete() do TodoTaskQueryset
 
     def __str__(self):
         return self.title
