@@ -3,14 +3,6 @@ from django.contrib import admin
 from . import models
 
 
-# TODO: Adicionar maneira de filtrar no admin pelas listas e tarefas que
-# ja estao completas. É algo no list_filter, tenho certeza, só nao sei
-# como faz pois nao da pra usar property, mas nao sei se vale a pena
-# fazer um annotate no get_queryset do manager, ficaria estranho pois
-# eu ja tenho um metodo complete() no meu Queryset personalizado...
-# enfim, ver isso depois
-
-
 class IsCompleteListFilter(admin.SimpleListFilter):
     #
     # OBS 1: É o parametro usado na URL do Browser com base nos lookups definidos.
@@ -41,21 +33,28 @@ class IsCompleteListFilter(admin.SimpleListFilter):
 
 @admin.register(models.TodoList)
 class TodoListAdmin(admin.ModelAdmin):
-    #
+    """
+
+    OBS 1: pra ao inves de mostrar "False" ou "True" na listagem, mostrar um icone
+
+    OBS 2: no caso isso aqui se fosse um metodo do model, pra transformar em um icone eu teria que definir algo no model TODO: pesquisar como fazer isso
+
+    OBS 3:
+
+    nao precisa pois o model ja tem um metodo "is_complete", e o list_display busca nessa ordem: um callable ou atributo de TodoListAdmin (a classe Admin em que esta presente)
+    ou entao um atributo ou metodo de todo.TodoList (o model em que a classe Admin esta registrada) entao no caso como o model ja possui um metodo is_complete, esse daqui é redundante
+    percebi isso quando deu esse erro: The value of 'list_display[1]' refers to 'is_complete', which is not a callable, an attribute of 'TodoListAdmin', or an attribute or method on 'todo.TodoList'.
+    TODO: Estudar mais isso, fazer testes criando um callable, dps um atributo dessa classe e por aí vai testando todas as opções
+    """
+
     list_display = ("title", "is_complete")
     list_filter = (IsCompleteListFilter,)
 
     # def is_complete(self, obj):
-    #     # nao precisa pois o model ja tem um metodo "is_complete", e o list_display busca nessa ordem:
-    #     # um callable ou atributo de TodoListAdmin (a classe Admin em que esta presente) ou entao um
-    #     # atributo ou metodo de todo.TodoList (o model em que a classe Admin esta registrada) entao no
-    #     # caso como o model ja possui um metodo is_complete, esse daqui é redundante
-    # # percebi isso quando deu esse erro: The value of 'list_display[1]' refers to 'is_complete', which is not a callable, an attribute of 'TodoListAdmin', or an attribute or method on 'todo.TodoList'.
-    # TODO: Estudar mais isso, fazer testes criando um callable, dps um atributo dessa classe e por aí vai testando todas as opções
+    #     # OBS 3
     #     return obj.is_complete()
 
-    # is_complete.boolean = True  # OBS 1 # no caso isso aqui como é um metodo do model, pra transformar em um icone eu teria que definir algo no model TODO: pesquisar como fazer isso
-    # OBS 1: pra ao inves de mostrar "False" ou "True" na listagem, mostrar um icone
+    # is_complete.boolean = True  # OBS 1 e OBS 2
 
 
 @admin.register(models.TodoTask)
