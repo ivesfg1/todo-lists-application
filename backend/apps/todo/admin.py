@@ -2,6 +2,8 @@ from django.contrib import admin
 
 from . import models
 
+# TODO: criar docstrings pra explicar melhor (nao so aqui, mas no model também)
+
 
 class IsCompleteListFilter(admin.SimpleListFilter):
     #
